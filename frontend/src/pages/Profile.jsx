@@ -1,11 +1,8 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
 import { usersAPI } from "../api/api";
+import Navbar from "../components/Navbar";
 
 const Profile = () => {
-  const { user, logout } = useAuth();
-  const navigate = useNavigate();
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -16,10 +13,6 @@ const Profile = () => {
       .catch((err) => setError(err.message))
       .finally(() => setLoading(false));
   }, []);
-
-  const handleLogout = () => { logout(); navigate("/login"); };
-
-  const isAdmin = user?.role === "ADMIN" || user?.role === "SUPER_ADMIN";
 
   const roleBadge = (role) => {
     if (role === "SUPER_ADMIN") return "badge badge-super";
@@ -35,15 +28,7 @@ const Profile = () => {
 
   return (
     <div className="page-container">
-      <nav className="navbar">
-        <div className="navbar-brand">🛡️ RoleSystem</div>
-        <div className="navbar-links">
-          <Link to="/dashboard" className="nav-link">Dashboard</Link>
-          <Link to="/profile" className="nav-link active">Profile</Link>
-          {isAdmin && <Link to="/users" className="nav-link">Users</Link>}
-          <button id="logout-btn-profile" onClick={handleLogout} className="btn btn-ghost">Logout</button>
-        </div>
-      </nav>
+      <Navbar />
 
       <main className="main-content">
         <div className="page-header">

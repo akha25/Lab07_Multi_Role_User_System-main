@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../hooks/useAuth";
 import { usersAPI } from "../api/api";
+import Navbar from "../components/Navbar";
 
 const ROLES = ["USER", "ADMIN", "SUPER_ADMIN"];
 
 const UserManagement = () => {
-  const { user, logout } = useAuth();
-  const navigate = useNavigate();
+  const { user } = useAuth();
   const [users, setUsers] = useState([]);
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
@@ -80,8 +79,6 @@ const UserManagement = () => {
     }
   };
 
-  const handleLogout = () => { logout(); navigate("/login"); };
-
   const roleBadge = (role) => {
     if (role === "SUPER_ADMIN") return "badge badge-super";
     if (role === "ADMIN") return "badge badge-admin";
@@ -102,23 +99,15 @@ const UserManagement = () => {
 
   return (
     <div className="page-container">
-      <nav className="navbar">
-        <div className="navbar-brand">🛡️ RoleSystem</div>
-        <div className="navbar-links">
-          <Link to="/dashboard" className="nav-link">Dashboard</Link>
-          <Link to="/profile" className="nav-link">Profile</Link>
-          {isAdmin && <Link to="/users" className="nav-link active">Users</Link>}
-          <button id="logout-btn-users" onClick={handleLogout} className="btn btn-ghost">Logout</button>
-        </div>
-      </nav>
+      <Navbar />
 
       <main className="main-content">
-        <div className="page-header" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: "1rem", flexWrap: "wrap" }}>
+        <div className="page-header page-header-actions">
           <div>
             <h1>User Management</h1>
             <p>You are viewing as <span className={roleBadge(user?.role)}>{user?.role}</span></p>
           </div>
-          <div className="form-group" style={{ maxWidth: "300px", marginLeft: "auto" }}>
+          <div className="form-group search-group">
             <label htmlFor="user-search">Search users</label>
             <input
               id="user-search"

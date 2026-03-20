@@ -1,20 +1,20 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../hooks/useAuth";
 import { authAPI } from "../api/api";
 
 const credentialPresets = [
   {
     label: "Super Admin",
-    email: "superadmin@app.com",
-    password: "super123",
+    email: "coolboy@app.com",
+    password: "coolboy123",
     accent: "super",
     note: "Full system access",
   },
   {
     label: "Admin",
-    email: "admin@app.com",
-    password: "admin123",
+    email: "user@app.com",
+    password: "user123",
     accent: "admin",
     note: "Team and user management",
   },

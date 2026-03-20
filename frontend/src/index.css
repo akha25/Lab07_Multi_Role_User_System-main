@@ -33,6 +33,21 @@
   --font-display: 'Space Grotesk', system-ui, sans-serif;
 }
 
+[data-theme="dark"] {
+  --bg-primary: #0f172a;
+  --bg-secondary: #0b1220;
+  --bg-card: #0b1324;
+  --bg-card-hover: #0f1b33;
+  --bg-input: rgba(255, 255, 255, 0.05);
+  --border: rgba(255, 255, 255, 0.08);
+  --border-focus: rgba(67, 160, 255, 0.45);
+  --text-primary: #e5e7eb;
+  --text-secondary: #aab4c6;
+  --text-muted: #8a93a7;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 24px 60px rgba(0, 0, 0, 0.45);
+}
+
 /* ===== Reset & Base ===== */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -87,6 +102,19 @@ a:hover { color: #1f87f5; }
 }
 
 .page-header h1 { margin-bottom: 0.25rem; }
+
+.page-header-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.search-group {
+  max-width: 300px;
+  margin-left: auto;
+}
 
 /* ===== Navbar ===== */
 .navbar {

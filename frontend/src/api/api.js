@@ -1,4 +1,7 @@
-const BASE_URL = "http://localhost:3000/api";
+const API_HOST = typeof window !== "undefined" && window.location.hostname === "127.0.0.1"
+  ? "127.0.0.1"
+  : "localhost";
+const BASE_URL = `http://${API_HOST}:3000/api`;
 
 const getToken = () => localStorage.getItem("token");
 

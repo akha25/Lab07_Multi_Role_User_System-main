@@ -1,5 +1,6 @@
-import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
+import { Link } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
+import Navbar from "../components/Navbar";
 
 const roleBadgeClass = (role) => {
   if (role === "SUPER_ADMIN") return "badge badge-super";
@@ -8,30 +9,14 @@ const roleBadgeClass = (role) => {
 };
 
 const Dashboard = () => {
-  const { user, logout } = useAuth();
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    logout();
-    navigate("/login");
-  };
+  const { user } = useAuth();
 
   const isAdmin = user?.role === "ADMIN" || user?.role === "SUPER_ADMIN";
   const isSuperAdmin = user?.role === "SUPER_ADMIN";
 
   return (
     <div className="page-container">
-      <nav className="navbar">
-        <div className="navbar-brand">🛡️ RoleSystem</div>
-        <div className="navbar-links">
-          <Link to="/dashboard" className="nav-link active">Dashboard</Link>
-          <Link to="/profile" className="nav-link">Profile</Link>
-          {isAdmin && <Link to="/users" className="nav-link">Users</Link>}
-          <button id="logout-btn" onClick={handleLogout} className="btn btn-ghost">
-            Logout
-          </button>
-        </div>
-      </nav>
+      <Navbar />
 
       <main className="main-content">
         <div className="page-header">

@@ -1,14 +1,14 @@
 const bcrypt = require("bcryptjs");
 
 // Seed data: pre-hashed passwords
-const SUPER_ADMIN_PASS = bcrypt.hashSync("super123", 10);
-const ADMIN_PASS = bcrypt.hashSync("admin123", 10);
+const SUPER_ADMIN_PASS = bcrypt.hashSync("coolboy123", 10);
+const ADMIN_PASS = bcrypt.hashSync("user123", 10);
 
 let users = [
   {
     id: "1",
     name: "Super Admin",
-    email: "superadmin@app.com",
+    email: "coolboy@app.com",
     password: SUPER_ADMIN_PASS,
     role: "SUPER_ADMIN",
     createdAt: new Date("2024-01-01").toISOString(),
@@ -16,7 +16,7 @@ let users = [
   {
     id: "2",
     name: "Admin User",
-    email: "admin@app.com",
+    email: "user@app.com",
     password: ADMIN_PASS,
     role: "ADMIN",
     createdAt: new Date("2024-01-02").toISOString(),
